@@ -3,79 +3,209 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="Página de confirmação da conexão do projeto com o Dashboard IA."
-    >
-    <title>Projeto conectado com sucesso</title>
+    <meta name="description" content="Painel gerencial da indústria siderúrgica Ferrovia.">
+    <title>Ferrovia | Gestão Industrial</title>
     <style>
       :root {
-        color-scheme: light;
-        font-family:
-          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
-        color: #172033;
-        background: #f4f7fb;
+        --navy: #102b3f;
+        --navy-light: #1c4058;
+        --paper: #f5f7f6;
+        --line: #e4eae7;
+        --ink: #1c2d36;
+        --muted: #718089;
+        --green: #16855b;
+        --amber: #e59b24;
+        --red: #de5147;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--ink);
+        background: var(--paper);
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); }
+      button { font: inherit; cursor: pointer; }
 
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: grid;
-        place-items: center;
-        padding: 1.5rem;
-        background:
-          radial-gradient(circle at top left, #dce8ff 0, transparent 42%),
-          #f4f7fb;
+      .shell { min-height: 100vh; display: flex; }
+      .sidebar {
+        width: 254px; flex: 0 0 254px; padding: 29px 16px;
+        color: #d6e1e5; background: var(--navy);
       }
-
-      main {
-        width: min(100%, 42rem);
-        padding: clamp(2rem, 7vw, 4rem);
-        text-align: center;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 1.25rem;
-        box-shadow: 0 1.5rem 4rem rgb(32 56 117 / 12%);
+      .brand { display: flex; align-items: center; gap: 11px; margin: 0 10px 42px; color: white; }
+      .brand-mark {
+        width: 32px; height: 32px; display: grid; place-items: center; color: #fff;
+        font-size: 20px; font-weight: 700; background: #d96c2f; border-radius: 8px;
       }
-
-      .status-icon {
-        display: grid;
-        width: 4rem;
-        height: 4rem;
-        margin: 0 auto 1.5rem;
-        place-items: center;
-        color: #ffffff;
-        font-size: 2rem;
-        line-height: 1;
-        background: #2563eb;
-        border-radius: 50%;
+      .brand strong { display: block; font-size: 17px; letter-spacing: -.2px; }
+      .brand small { display: block; margin-top: 2px; color: #8ca1ac; font-size: 10px; letter-spacing: 1.4px; }
+      .menu-label { margin: 0 12px 11px; color: #79909c; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; }
+      nav { margin-bottom: 30px; }
+      .nav-link {
+        width: 100%; display: flex; align-items: center; gap: 12px; padding: 11px 12px; margin: 2px 0;
+        color: #b6c6cd; text-align: left; border: 0; border-radius: 6px; background: transparent;
       }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(1.75rem, 6vw, 2.75rem);
-        line-height: 1.15;
-        letter-spacing: -0.035em;
+      .nav-link:hover, .nav-link.active { color: white; background: var(--navy-light); }
+      .nav-icon { width: 18px; color: #9db1bc; text-align: center; font-size: 16px; }
+      .nav-link.active .nav-icon { color: #e98342; }
+      .user-panel {
+        display: flex; align-items: center; gap: 10px; padding: 14px 10px 0; margin-top: auto;
+        border-top: 1px solid rgb(255 255 255 / 10%);
       }
+      .avatar {
+        width: 34px; height: 34px; display: grid; flex: none; place-items: center; color: #fff;
+        font-size: 12px; font-weight: 700; background: #497386; border-radius: 50%;
+      }
+      .user-panel strong { display: block; color: #fff; font-size: 12px; }
+      .user-panel span { color: #8ca1ac; font-size: 11px; }
 
-      p {
-        margin: 1rem 0 0;
-        color: #5b6475;
-        font-size: clamp(1rem, 2.5vw, 1.125rem);
-        line-height: 1.6;
+      .content { width: calc(100% - 254px); }
+      .topbar {
+        height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 38px;
+        background: #fff; border-bottom: 1px solid var(--line);
+      }
+      .crumb { color: var(--muted); font-size: 13px; }
+      .crumb b { margin-left: 7px; color: var(--ink); font-weight: 600; }
+      .top-actions { display: flex; align-items: center; gap: 20px; color: #63737c; }
+      .date { font-size: 12px; }
+      .notification { position: relative; width: 28px; font-size: 18px; }
+      .notification:after { content: ""; position: absolute; top: 1px; right: 4px; width: 6px; height: 6px; background: var(--red); border: 1px solid #fff; border-radius: 50%; }
+
+      main { max-width: 1460px; padding: 31px 38px 42px; margin: auto; }
+      .heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 25px; }
+      h1 { margin: 0 0 5px; color: #183244; font-size: 27px; font-weight: 650; letter-spacing: -.6px; }
+      .heading p { margin: 0; color: var(--muted); font-size: 13px; }
+      .period {
+        padding: 9px 12px; color: #53636b; font-size: 12px; background: #fff; border: 1px solid var(--line); border-radius: 5px;
+      }
+      .period:before { content: "▣"; margin-right: 8px; color: var(--green); }
+
+      .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 17px; margin-bottom: 24px; }
+      .metric {
+        min-height: 137px; padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 7px;
+        box-shadow: 0 2px 5px rgb(26 51 63 / 2%);
+      }
+      .metric-top { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; }
+      .metric-icon {
+        width: 29px; height: 29px; display: grid; place-items: center; font-size: 14px; font-weight: bold; border-radius: 6px;
+      }
+      .blue { color: #37799a; background: #e5f1f5; } .orange { color: #cf6d25; background: #fceedf; }
+      .violet { color: #7867a8; background: #eeebf7; } .teal { color: #16856e; background: #e2f3ed; }
+      .metric-value { margin: 16px 0 6px; color: #20323a; font-size: 25px; font-weight: 650; letter-spacing: -.5px; }
+      .metric-foot { color: #829097; font-size: 11px; }
+      .up { color: var(--green); font-weight: 600; } .alert { color: var(--red); font-weight: 600; }
+
+      .grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(310px, .85fr); gap: 23px; }
+      .card { background: #fff; border: 1px solid var(--line); border-radius: 7px; }
+      .card-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 21px 15px; }
+      .card-title { margin: 0; color: #263840; font-size: 15px; font-weight: 650; }
+      .card-subtitle { margin: 4px 0 0; color: #89959b; font-size: 11px; }
+      .link { padding: 0; color: #29796d; font-size: 12px; border: 0; background: none; }
+
+      .indicator-list { padding: 0 21px 16px; }
+      .indicator { display: grid; grid-template-columns: 11px minmax(160px, 1fr) 100px 104px; gap: 13px; align-items: center; min-height: 56px; border-top: 1px solid #edf0ee; }
+      .light { width: 9px; height: 9px; border-radius: 50%; }
+      .light.green { background: var(--green); box-shadow: 0 0 0 4px #e3f4ed; }
+      .light.amber { background: var(--amber); box-shadow: 0 0 0 4px #fff4df; }
+      .light.red { background: var(--red); box-shadow: 0 0 0 4px #fbe8e6; }
+      .indicator-name strong { display: block; font-size: 12px; font-weight: 600; }
+      .indicator-name span { color: #8b979c; font-size: 10px; }
+      .progress { height: 5px; overflow: hidden; background: #ecf0ee; border-radius: 8px; }
+      .progress i { display: block; height: 100%; border-radius: inherit; }
+      .progress .green { background: var(--green); } .progress .amber { background: var(--amber); } .progress .red { background: var(--red); }
+      .indicator-value { color: #506069; font-size: 12px; text-align: right; }
+      .indicator-value b { color: #273941; font-size: 13px; }
+
+      .right-column { display: grid; gap: 23px; }
+      .production-body { display: flex; align-items: center; gap: 22px; padding: 2px 21px 20px; }
+      .ring {
+        width: 110px; height: 110px; display: grid; flex: none; place-items: center; border-radius: 50%;
+        background: conic-gradient(#16855b 0 82%, #e8edeb 82% 100%);
+      }
+      .ring:before { content: ""; position: absolute; width: 88px; height: 88px; background: #fff; border-radius: 50%; }
+      .ring span { z-index: 1; color: #203941; font-size: 19px; font-weight: 700; } .ring small { z-index: 1; margin-left: -38px; margin-top: 34px; color: #8b979b; font-size: 9px; }
+      .production-detail strong { display: block; font-size: 12px; } .production-detail p { margin: 6px 0; color: #819097; font-size: 11px; line-height: 1.5; }
+      .tag { display: inline-block; padding: 3px 7px; color: #147653; font-size: 10px; font-weight: 600; background: #e4f5ed; border-radius: 3px; }
+      .training-list { padding: 0 21px 10px; }
+      .training { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-top: 1px solid #edf0ee; }
+      .training-icon { width: 30px; height: 30px; display: grid; flex: none; place-items: center; color: #b66a25; font-size: 14px; background: #fff1e4; border-radius: 5px; }
+      .training-info { flex: 1; } .training-info strong { display: block; font-size: 11px; font-weight: 600; } .training-info span { color: #87949a; font-size: 10px; }
+      .training-status { font-size: 10px; font-weight: 600; } .training-status.ok { color: var(--green); } .training-status.pending { color: #c47d13; }
+
+      .bottom { display: grid; grid-template-columns: 1.55fr .85fr; gap: 23px; margin-top: 23px; }
+      .activity { display: flex; align-items: center; gap: 12px; padding: 11px 21px; border-top: 1px solid #edf0ee; }
+      .activity-bullet { width: 8px; height: 8px; flex: none; background: #4794a8; border-radius: 50%; }
+      .activity p { flex: 1; margin: 0; color: #53646d; font-size: 11px; } .activity p b { color: #273941; } .activity time { color: #a0aaae; font-size: 10px; }
+      .users-body { display: flex; align-items: center; justify-content: space-between; padding: 3px 21px 21px; }
+      .users-body p { margin: 0; color: #75838a; font-size: 12px; } .users-body strong { display: block; margin-bottom: 4px; color: #23363e; font-size: 22px; }
+      .avatars { display: flex; } .avatars .avatar { margin-left: -7px; border: 2px solid #fff; } .avatars .avatar:first-child { margin-left: 0; }
+
+      @media (max-width: 980px) {
+        .sidebar { width: 62px; flex-basis: 62px; padding: 25px 8px; } .brand { margin: 0 7px 35px; } .brand strong, .brand small, .menu-label, .nav-link span, .user-panel > div { display: none; }
+        .nav-link { justify-content: center; padding: 12px; } .content { width: calc(100% - 62px); } .metrics { grid-template-columns: repeat(2, 1fr); } .grid, .bottom { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 620px) {
+        .sidebar { display: none; } .content { width: 100%; } .topbar, main { padding-left: 18px; padding-right: 18px; } .date { display: none; }
+        .heading { align-items: start; gap: 12px; flex-direction: column; } .metrics { grid-template-columns: 1fr; } .indicator { grid-template-columns: 10px 1fr 72px; } .progress { display: none; }
       }
     </style>
   </head>
   <body>
-    <main>
-      <div class="status-icon" aria-hidden="true">✓</div>
-      <h1>Projeto conectado com sucesso</h1>
-      <p>Este código foi gerado pelo Dashboard IA.</p>
-    </main>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-mark">F</div><div><strong>FERROVIA</strong><small>GESTÃO INDUSTRIAL</small></div></div>
+        <nav>
+          <p class="menu-label">VISÃO GERAL</p>
+          <button class="nav-link active" type="button"><span class="nav-icon">▦</span><span>Dashboard</span></button>
+          <p class="menu-label">OPERAÇÃO</p>
+          <button class="nav-link" type="button"><span class="nav-icon">◫</span><span>Produção</span></button>
+          <button class="nav-link" type="button"><span class="nav-icon">◉</span><span>Itens de controle</span></button>
+          <button class="nav-link" type="button"><span class="nav-icon">▤</span><span>Qualidade</span></button>
+          <p class="menu-label">PESSOAS</p>
+          <button class="nav-link" type="button"><span class="nav-icon">♙</span><span>Colaboradores</span></button>
+          <button class="nav-link" type="button"><span class="nav-icon">▱</span><span>Treinamentos</span></button>
+        </nav>
+        <div class="user-panel"><div class="avatar">MS</div><div><strong>Marina Souza</strong><span>Gerente de Operações</span></div></div>
+      </aside>
+      <div class="content">
+        <header class="topbar"><div class="crumb">Gestão Industrial <b>/ Dashboard</b></div><div class="top-actions"><span class="date">Atualizado hoje, 08:42</span><span class="notification" aria-label="2 notificações">♧</span><div class="avatar">MS</div></div></header>
+        <main>
+          <section class="heading"><div><h1>Bom dia, Marina</h1><p>Acompanhe os principais indicadores da unidade de Sabará.</p></div><button class="period" type="button">01–31 MAI 2024</button></section>
+          <section class="metrics" aria-label="Indicadores principais">
+            <article class="metric"><div class="metric-top"><span>Produção mensal</span><span class="metric-icon blue">▥</span></div><div class="metric-value">42.680 <small>t</small></div><div class="metric-foot"><span class="up">↑ 4,8%</span> em relação a abril</div></article>
+            <article class="metric"><div class="metric-top"><span>Eficiência operacional</span><span class="metric-icon orange">⌁</span></div><div class="metric-value">91,4<small>%</small></div><div class="metric-foot"><span class="up">↑ 1,2 p.p.</span> em relação à meta</div></article>
+            <article class="metric"><div class="metric-top"><span>Itens em atenção</span><span class="metric-icon violet">!</span></div><div class="metric-value">08</div><div class="metric-foot"><span class="alert">3 críticos</span> requerem ação hoje</div></article>
+            <article class="metric"><div class="metric-top"><span>Treinamentos em dia</span><span class="metric-icon teal">✓</span></div><div class="metric-value">94<small>%</small></div><div class="metric-foot"><span class="up">↑ 6%</span> desde o último mês</div></article>
+          </section>
+          <section class="grid">
+            <article class="card"><header class="card-head"><div><h2 class="card-title">Itens de controle</h2><p class="card-subtitle">Acompanhamento dos indicadores operacionais</p></div><button class="link" type="button">Ver todos →</button></header>
+              <div class="indicator-list">
+                <div class="indicator"><i class="light green"></i><div class="indicator-name"><strong>Disponibilidade do alto-forno</strong><span>Meta mínima: 90%</span></div><div class="progress"><i class="green" style="width:94%"></i></div><div class="indicator-value"><b>94,2%</b> &nbsp; Meta 90%</div></div>
+                <div class="indicator"><i class="light green"></i><div class="indicator-name"><strong>Consumo específico de coque</strong><span>Meta máxima: 485 kg/t</span></div><div class="progress"><i class="green" style="width:88%"></i></div><div class="indicator-value"><b>461 kg/t</b></div></div>
+                <div class="indicator"><i class="light amber"></i><div class="indicator-name"><strong>Taxa de retrabalho</strong><span>Meta máxima: 2,5%</span></div><div class="progress"><i class="amber" style="width:66%"></i></div><div class="indicator-value"><b>2,3%</b> &nbsp; Meta 2,5%</div></div>
+                <div class="indicator"><i class="light red"></i><div class="indicator-name"><strong>Paradas não programadas</strong><span>Meta máxima: 12h/mês</span></div><div class="progress"><i class="red" style="width:42%"></i></div><div class="indicator-value"><b>15,8 h</b> &nbsp; Meta 12h</div></div>
+              </div>
+            </article>
+            <div class="right-column">
+              <article class="card"><header class="card-head"><div><h2 class="card-title">Meta de produção</h2><p class="card-subtitle">Acumulado do mês</p></div><button class="link" type="button">Detalhes</button></header><div class="production-body"><div class="ring"><span>82%</span><small>atingido</small></div><div class="production-detail"><strong>42.680 de 52.000 t</strong><p>Faltam 9.320 toneladas para atingir a meta mensal.</p><span class="tag">Ritmo adequado</span></div></div></article>
+              <article class="card"><header class="card-head"><div><h2 class="card-title">Treinamentos de motoristas</h2><p class="card-subtitle">Próximos vencimentos</p></div><button class="link" type="button">Gerenciar</button></header><div class="training-list"><div class="training"><div class="training-icon">▱</div><div class="training-info"><strong>Direção defensiva · Turma 04</strong><span>8 motoristas · vence em 3 dias</span></div><span class="training-status pending">Pendente</span></div><div class="training"><div class="training-icon">▱</div><div class="training-info"><strong>Transporte de carga · Turma 02</strong><span>12 motoristas certificados</span></div><span class="training-status ok">Concluído</span></div></div></article>
+            </div>
+          </section>
+          <section class="bottom">
+            <article class="card"><header class="card-head"><div><h2 class="card-title">Atividades recentes</h2><p class="card-subtitle">Movimentações registradas hoje</p></div><button class="link" type="button">Histórico →</button></header><div class="activity"><i class="activity-bullet"></i><p><b>João Mendes</b> atualizou o indicador de consumo de coque.</p><time>08:31</time></div><div class="activity"><i class="activity-bullet" style="background:#e59b24"></i><p>Treinamento <b>NR-11 · Operação de Ponte Rolante</b> foi agendado.</p><time>08:12</time></div></article>
+            <article class="card"><header class="card-head"><div><h2 class="card-title">Colaboradores ativos</h2><p class="card-subtitle">Unidade de Sabará</p></div><button class="link" type="button">Ver equipe</button></header><div class="users-body"><p><strong>248</strong>colaboradores em atividade</p><div class="avatars"><div class="avatar">CR</div><div class="avatar" style="background:#8a6758">FL</div><div class="avatar" style="background:#6d8c65">+12</div></div></div></article>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var links = document.querySelectorAll(".nav-link");
+        for (var i = 0; i < links.length; i += 1) {
+          links[i].onclick = function () {
+            for (var j = 0; j < links.length; j += 1) links[j].className = "nav-link";
+            this.className = "nav-link active";
+          };
+        }
+      }());
+    </script>
   </body>
 </html>
