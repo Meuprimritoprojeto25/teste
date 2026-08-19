@@ -1,25 +1,8 @@
-    @javax.persistence.PrePersist
-    protected void initializeAuditFields() {
-        java.util.Date now = new java.util.Date();
-        if (getCreatedAt() == null) {
-            setCreatedAt(now);
-        }
-        if (getUpdatedAt() == null) {
-            setUpdatedAt(now);
-        }
-        if (getVersion() == null) {
-            setVersion(0L);
-        }
-    }
-
-    @javax.persistence.PreUpdate
-    protected void updateAuditTimestamp() {
-        setUpdatedAt(new java.util.Date());
-    }
 package br.com.ferrogestao.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,37 +16,73 @@ import javax.persistence.Version;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
-    private Long id;
-    private Long version;
-    private Date createdAt;
-    private Date updatedAt;
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    @Version
-    public Long getVersion() { return version; }
-    public void setVersion(Long version) { this.version = version; }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
-    public Date getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+    private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    public Date getUpdatedAt() { return updatedAt; }
-    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+    private Date updatedAt;
+
+    @Version
+    @Column(nullable = false)
+    private Long version;
 
     @PrePersist
     protected void onCreate() {
         Date now = new Date();
-        createdAt = now;
-        updatedAt = now;
+        if (createdAt == null) {
+            createdAt = now;
+        }
+        if (updatedAt == null) {
+            updatedAt = now;
+        }
+        if (version == null) {
+            version = 0L;
+        }
     }
 
     @PreUpdate
-    protected void onUpdate() { updatedAt = new Date(); }
+    protected void onUpdate() {
+        updatedAt = new Date();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 }
