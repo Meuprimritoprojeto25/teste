@@ -1,3 +1,21 @@
+    @javax.persistence.PrePersist
+    protected void initializeAuditFields() {
+        java.util.Date now = new java.util.Date();
+        if (getCreatedAt() == null) {
+            setCreatedAt(now);
+        }
+        if (getUpdatedAt() == null) {
+            setUpdatedAt(now);
+        }
+        if (getVersion() == null) {
+            setVersion(0L);
+        }
+    }
+
+    @javax.persistence.PreUpdate
+    protected void updateAuditTimestamp() {
+        setUpdatedAt(new java.util.Date());
+    }
 package br.com.ferrogestao.domain;
 
 import java.io.Serializable;
