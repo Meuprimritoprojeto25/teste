@@ -3,19 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="Página de confirmação da conexão do projeto com o Dashboard IA."
-    >
-    <title>Projeto conectado com sucesso</title>
+    <meta name="description" content="Sideral Gerencial - controle industrial, KPIs e farol operacional.">
+    <title>Sideral Gerencial | Painel Industrial</title>
     <style>
       :root {
         color-scheme: light;
-        font-family:
-          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
-        color: #172033;
-        background: #f4f7fb;
+        font-family: Arial, Helvetica, sans-serif; color:#20303d; background:#edf1f3;
       }
 
       * {
@@ -23,59 +16,19 @@
       }
 
       body {
-        min-height: 100vh;
-        margin: 0;
-        display: grid;
-        place-items: center;
-        padding: 1.5rem;
-        background:
-          radial-gradient(circle at top left, #dce8ff 0, transparent 42%),
-          #f4f7fb;
+        min-height:100vh;margin:0;background:#edf1f3;
       }
 
-      main {
-        width: min(100%, 42rem);
-        padding: clamp(2rem, 7vw, 4rem);
-        text-align: center;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 1.25rem;
-        box-shadow: 0 1.5rem 4rem rgb(32 56 117 / 12%);
-      }
-
-      .status-icon {
-        display: grid;
-        width: 4rem;
-        height: 4rem;
-        margin: 0 auto 1.5rem;
-        place-items: center;
-        color: #ffffff;
-        font-size: 2rem;
-        line-height: 1;
-        background: #2563eb;
-        border-radius: 50%;
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(1.75rem, 6vw, 2.75rem);
-        line-height: 1.15;
-        letter-spacing: -0.035em;
-      }
-
-      p {
-        margin: 1rem 0 0;
-        color: #5b6475;
-        font-size: clamp(1rem, 2.5vw, 1.125rem);
-        line-height: 1.6;
-      }
+      .top{height:58px;background:#173e52;color:#fff;display:flex;align-items:center;padding:0 28px;justify-content:space-between}.brand{font-weight:bold;font-size:20px;letter-spacing:.5px}.brand b{color:#ffb820}.user{font-size:13px;color:#d4e2e8}.shell{display:flex;min-height:calc(100vh - 58px)}nav{width:215px;background:#fff;border-right:1px solid #d6e0e4;padding:16px 0}nav a{display:block;padding:12px 26px;color:#425863;text-decoration:none;font-size:14px;border-left:4px solid transparent}nav a.active,nav a:hover{background:#e8f2f5;border-left-color:#f3a51c;color:#173e52;font-weight:bold}.content{flex:1;padding:26px;max-width:1450px}.crumb{font-size:12px;color:#75868e;margin-bottom:8px}h1{font-size:26px;margin:0;color:#1d3847}.subtitle{color:#71838d;font-size:14px;margin:7px 0 24px}.grid{display:grid;grid-template-columns:repeat(4,minmax(155px,1fr));gap:16px}.card{background:#fff;border:1px solid #d8e1e5;border-radius:3px;padding:17px;box-shadow:0 1px 2px #cad4d844}.card label{font-size:11px;color:#72838d;text-transform:uppercase}.number{font-size:32px;color:#203e4e;font-weight:bold;margin-top:6px}.card small{font-size:12px;color:#819099}.green{border-top:4px solid #35a76c}.yellow{border-top:4px solid #f0ad28}.red{border-top:4px solid #dd5555}.row{display:grid;grid-template-columns:1.6fr 1fr;gap:17px;margin-top:18px}.panel{background:#fff;border:1px solid #d8e1e5;border-radius:3px}.panel h2{font-size:15px;margin:0;padding:15px 18px;border-bottom:1px solid #e5ebed;color:#294553}.panel-body{padding:15px 18px}table{border-collapse:collapse;width:100%;font-size:13px}th{text-align:left;color:#72838d;font-size:11px;text-transform:uppercase;padding:9px 7px;border-bottom:1px solid #dae4e7}td{padding:11px 7px;border-bottom:1px solid #eef2f3}.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px}.dot.green{background:#35a76c}.dot.yellow{background:#f0ad28}.dot.red{background:#dd5555}.bars{height:180px;display:flex;align-items:end;gap:18px;border-bottom:1px solid #cfdadd;padding:12px 15px}.bar{width:38px;background:#277e9e;position:relative}.bar:after{content:attr(data-label);position:absolute;bottom:-22px;left:0;font-size:11px;color:#75868e}.bar span{position:absolute;top:-20px;font-size:11px;left:12px;color:#50636c}.actions{list-style:none;padding:0;margin:0}.actions li{padding:11px 0;border-bottom:1px solid #edf1f2;font-size:13px}.tag{float:right;font-size:10px;padding:3px 6px;background:#fff2dc;color:#a86b00;border-radius:2px}.footer{padding:14px 0;font-size:11px;color:#7d8d94}@media(max-width:800px){nav{display:none}.grid{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:1fr}.content{padding:16px}} 
     </style>
   </head>
   <body>
-    <main>
-      <div class="status-icon" aria-hidden="true">✓</div>
-      <h1>Projeto conectado com sucesso</h1>
-      <p>Este código foi gerado pelo Dashboard IA.</p>
-    </main>
+    <header class="top"><div class="brand">SIDERAL <b>GERENCIAL</b></div><div class="user">Unidade: Usina de Ferro Norte &nbsp; | &nbsp; Administrador</div></header>
+    <div class="shell"><nav><a class="active" href="/dashboard">Painel gerencial</a><a href="/itens-controle">Itens de controle</a><a href="/desdobramentos">Desdobramentos</a><a href="/treinamentos">Treinamento de motoristas</a><a href="/usuarios">Usuários e perfis</a><a href="/documentos">Documentos</a><a href="/relatorios/farol">Relatórios de farol</a><a href="/r3g">Relatório R3G</a></nav>
+    <main class="content"><div class="crumb">INÍCIO / PAINEL GERENCIAL</div><h1>Painel de desempenho industrial</h1><p class="subtitle">Visão consolidada da operação • atualizado em tempo real</p>
+      <section class="grid"><div class="card green"><label>Itens dentro da meta</label><div class="number">42</div><small>78% dos indicadores</small></div><div class="card yellow"><label>Atenção</label><div class="number">8</div><small>Requerem acompanhamento</small></div><div class="card red"><label>Críticos</label><div class="number">3</div><small>Plano de ação aberto</small></div><div class="card"><label>Desdobramentos</label><div class="number">17</div><small>Em execução</small></div></section>
+      <section class="row"><div class="panel"><h2>Farol de itens de controle</h2><div class="panel-body"><table><thead><tr><th>Item</th><th>Área</th><th>Atual / Meta</th><th>Situação</th></tr></thead><tbody><tr><td>IC-014 Produção de gusa</td><td>Alto-forno</td><td>91,4 / 94,0</td><td><span class="dot yellow"></span>Atenção</td></tr><tr><td>IC-022 Consumo de coque</td><td>Redução</td><td>512 / 500</td><td><span class="dot red"></span>Crítico</td></tr><tr><td>IC-031 Disponibilidade física</td><td>Manutenção</td><td>96,8 / 95,0</td><td><span class="dot green"></span>Dentro da meta</td></tr><tr><td>IC-047 Expedição</td><td>Logística</td><td>99,1 / 98,0</td><td><span class="dot green"></span>Dentro da meta</td></tr></tbody></table></div></div><div class="panel"><h2>Evolução semanal do farol</h2><div class="panel-body"><div class="bars"><div class="bar" data-label="SEG" style="height:72%"><span>38</span></div><div class="bar" data-label="TER" style="height:84%"><span>44</span></div><div class="bar" data-label="QUA" style="height:65%"><span>34</span></div><div class="bar" data-label="QUI" style="height:92%"><span>48</span></div><div class="bar" data-label="SEX" style="height:78%"><span>41</span></div></div></div></div></section>
+      <section class="row"><div class="panel"><h2>Prioridades do turno</h2><div class="panel-body"><ul class="actions"><li>Revisar consumo específico do Alto-forno 2 <span class="tag">Vence hoje</span></li><li>Validar evidência do plano de manutenção <span class="tag">Em atraso</span></li><li>Programar reciclagem de motorista de escória <span class="tag">Treinamento</span></li></ul></div></div><div class="panel"><h2>Acesso rápido</h2><div class="panel-body"><p class="subtitle">Gere relatórios em PDF, Excel e Word pelo módulo de relatórios.</p><a href="/relatorios/farol">Abrir relatório de farol →</a></div></div></section><div class="footer">Sideral Gerencial 1.0 • Plataforma corporativa de gestão industrial</div>
+    </main></div>
   </body>
 </html>
