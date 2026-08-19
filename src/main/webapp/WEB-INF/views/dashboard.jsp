@@ -33,6 +33,18 @@
     </ul>
   </section>
 </div>
+<c:set var="pieCount" value="${lights['BLUE'] + lights['GREEN'] + lights['YELLOW'] + lights['RED']}"/>
+<c:set var="pieTotal" value="${pieCount > 0 ? pieCount : 1}"/>
+<c:set var="bluePercent" value="${lights['BLUE'] * 100 / pieTotal}"/>
+<c:set var="greenPercent" value="${bluePercent + (lights['GREEN'] * 100 / pieTotal)}"/>
+<c:set var="yellowPercent" value="${greenPercent + (lights['YELLOW'] * 100 / pieTotal)}"/>
+<section class="panel table-panel farol-pie-panel">
+  <div class="panel-head"><div><h2>Visão em pizza do farol</h2><div class="panel-subtitle">Participação por situação atual</div></div></div>
+  <div class="farol-pie-content">
+    <div class="farol-pie${pieCount == 0 ? ' empty' : ''}" role="img" aria-label="Distribuição do farol: ${lights['BLUE']} itens superados, ${lights['GREEN']} no alvo, ${lights['YELLOW']} em atenção e ${lights['RED']} críticos" style="--blue-percent:${bluePercent}%;--green-percent:${greenPercent}%;--yellow-percent:${yellowPercent}%"><div class="farol-pie-center"><strong>${pieCount}</strong><span>itens</span></div></div>
+    <div class="pie-legend"><span><i class="dot" style="background:var(--blue)"></i>Superado <b>${lights['BLUE']}</b></span><span><i class="dot" style="background:var(--green)"></i>No alvo <b>${lights['GREEN']}</b></span><span><i class="dot" style="background:var(--yellow)"></i>Atenção <b>${lights['YELLOW']}</b></span><span><i class="dot" style="background:var(--red)"></i>Crítico <b>${lights['RED']}</b></span></div>
+  </div>
+</section>
 <section class="panel table-panel">
   <div class="panel-head"><div><h2>Acompanhamento recente</h2><div class="panel-subtitle">Leituras, análise e plano de ação</div></div><a class="link-action" href="<c:url value='/acompanhamentos'/>">Ver todos →</a></div>
   <div class="table-scroll"><table class="data"><thead><tr><th>Item</th><th>Área</th><th>Referência</th><th>Meta</th><th>Realizado</th><th>Farol</th><th>Responsável</th></tr></thead><tbody>
@@ -40,4 +52,5 @@
   <c:if test="${empty recent}"><tr><td colspan="7" class="empty">Nenhum acompanhamento registrado.</td></tr></c:if>
   </tbody></table></div>
 </section>
+<footer class="demo-footer">Ambiente de demonstração</footer>
 <jsp:include page="fragments/footer.jsp"/>
