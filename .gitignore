@@ -1,0 +1,10 @@
+target/
+*.class
+*.log
+*.war
+.idea/
+.classpath
+.project
+.settings/
+ferrogestao*.mv.db
+ferrogestao*.trace.db

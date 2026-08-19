@@ -1,0 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" value="Validação de negócio" scope="request"/><jsp:include page="../fragments/header.jsp"/>
+<div class="form-card"><div class="form-section"><p class="eyebrow">Não foi possível concluir</p><h1 style="font-family:Georgia,serif;font-weight:normal">Validação de negócio</h1><p style="color:var(--muted)">${error}</p></div><div class="form-actions"><button class="btn btn-secondary" onclick="history.back()">Voltar e corrigir</button><a class="btn btn-primary" href="<c:url value='/'/>">Centro de controle</a></div></div>
+<jsp:include page="../fragments/footer.jsp"/>
