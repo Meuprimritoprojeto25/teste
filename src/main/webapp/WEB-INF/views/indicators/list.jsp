@@ -1,0 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" %><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" value="Itens de controle" scope="request"/><jsp:include page="../fragments/header.jsp"/>
+<div class="page-heading"><div><p class="eyebrow">Gestão de performance</p><h1>Itens de controle</h1><p>Catálogo de KPIs, metas, tolerâncias e responsáveis.</p></div><div class="actions"><a class="btn btn-secondary" href="<c:url value='/acompanhamentos/novo'/>">Fazer apontamento</a><a class="btn btn-primary" href="<c:url value='/itens-controle/novo'/>">+ Novo item</a></div></div>
+<section class="panel"><div class="table-scroll"><table class="data"><thead><tr><th>Código</th><th>Indicador</th><th>Área</th><th>Direção</th><th>Meta</th><th>Atenção</th><th>Periodicidade</th><th>Responsável</th><th></th></tr></thead><tbody>
+<c:forEach items="${items}" var="item"><tr><td class="code">${item.code}</td><td><strong>${item.name}</strong></td><td>${item.area}</td><td>${item.direction.label}</td><td>${item.target} ${item.unit}</td><td>${item.warningLimit} ${item.unit}</td><td>${item.periodicity}</td><td>${empty item.owner ? '—' : item.owner.name}</td><td><a class="btn btn-secondary btn-small" href="<c:url value='/itens-controle/${item.id}/editar'/>">Editar</a></td></tr></c:forEach>
+<c:if test="${empty items}"><tr><td colspan="9" class="empty">Nenhum item de controle cadastrado.</td></tr></c:if></tbody></table></div></section>
+<jsp:include page="../fragments/footer.jsp"/>

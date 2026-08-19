@@ -1,0 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" %><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" value="Usuários" scope="request"/><jsp:include page="../fragments/header.jsp"/>
+<div class="page-heading"><div><p class="eyebrow">Administração</p><h1>Usuários e acessos</h1><p>Responsáveis, áreas e perfis da rotina gerencial.</p></div><a class="btn btn-primary" href="<c:url value='/usuarios/novo'/>">+ Novo usuário</a></div>
+<section class="panel"><div class="panel-head"><div><h2>Equipe cadastrada</h2><div class="panel-subtitle">${users.size()} registros</div></div></div><div class="table-scroll"><table class="data"><thead><tr><th>Matrícula</th><th>Nome</th><th>E-mail</th><th>Área</th><th>Perfil</th><th>Situação</th><th></th></tr></thead><tbody>
+<c:forEach items="${users}" var="user"><tr><td class="code">${user.registration}</td><td><strong>${user.name}</strong></td><td>${user.email}</td><td>${user.department}</td><td>${user.role}</td><td><span class="badge badge-${user.active ? 'GREEN' : 'GRAY'}">${user.active ? 'Ativo' : 'Inativo'}</span></td><td><a class="btn btn-secondary btn-small" href="<c:url value='/usuarios/${user.id}/editar'/>">Editar</a></td></tr></c:forEach>
+<c:if test="${empty users}"><tr><td class="empty" colspan="7">Nenhum usuário cadastrado.</td></tr></c:if></tbody></table></div></section>
+<jsp:include page="../fragments/footer.jsp"/>

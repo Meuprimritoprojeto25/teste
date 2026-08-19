@@ -1,0 +1,13 @@
+<%@ page contentType="text/html;charset=UTF-8" %><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" value="Central de relatórios" scope="request"/><jsp:include page="../fragments/header.jsp"/>
+<div class="page-heading"><div><p class="eyebrow">Documentos gerenciais</p><h1>Central de relatórios</h1><p>Geração real dos arquivos com os dados persistidos no sistema.</p></div></div>
+<div class="report-grid">
+<article class="report-card"><div class="format">PDF</div><h3>Farol gerencial</h3><p>Documento paginado com metas, realizados e destaque visual de situação.</p><a class="btn btn-primary" href="<c:url value='/relatorios/farol.pdf'/>">Gerar PDF</a></article>
+<article class="report-card"><div class="format">XLSX</div><h3>Base analítica do farol</h3><p>Planilha Excel completa para filtros, análises e consolidações externas.</p><a class="btn btn-primary" href="<c:url value='/relatorios/farol.xlsx'/>">Gerar Excel</a></article>
+<article class="report-card"><div class="format">DOCX</div><h3>Farol para reunião</h3><p>Relatório Word editável com tabela de itens, metas e resultados.</p><a class="btn btn-primary" href="<c:url value='/relatorios/farol.docx'/>">Gerar Word</a></article>
+<article class="report-card"><div class="format">PNG</div><h3>Gráfico de farol</h3><p>Imagem em alta resolução para apresentações e murais de gestão à vista.</p><a class="btn btn-secondary" href="<c:url value='/graficos/farol.png'/>">Baixar PNG</a></article>
+<article class="report-card"><div class="format">JPG</div><h3>Gráfico compacto</h3><p>Formato fotográfico compatível com ferramentas legadas e e-mails.</p><a class="btn btn-secondary" href="<c:url value='/graficos/farol.jpg'/>">Baixar JPG</a></article>
+<article class="report-card"><div class="format">SVG</div><h3>Gráfico vetorial</h3><p>Formato escalável para painéis, impressão e comunicação corporativa.</p><a class="btn btn-secondary" href="<c:url value='/graficos/farol.svg'/>">Baixar SVG</a></article>
+</div>
+<section class="panel table-panel"><div class="panel-head"><div><h2>Prévia do gráfico</h2><div class="panel-subtitle">Renderizado a partir da distribuição atual do farol</div></div></div><div class="panel-body"><img src="<c:url value='/graficos/farol.svg'/>" alt="Gráfico de distribuição do farol" style="display:block;width:100%;max-height:420px"></div></section>
+<jsp:include page="../fragments/footer.jsp"/>
