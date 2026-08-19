@@ -41,27 +41,22 @@
         <article class="metric"><div class="metric-top"><span>Itens de controle</span><span class="metric-icon">◎</span></div><div class="metric-value">6</div><div class="metric-foot">metas ativas na hierarquia</div></article>
         <article class="metric"><div class="metric-top"><span>Equipe gerencial</span><span class="metric-icon">♙</span></div><div class="metric-value">3</div><div class="metric-foot">usuários cadastrados</div></article>
       </section>
-      <div class="dashboard-grid">
-        <section class="panel">
-          <div class="panel-head"><div><h2>Distribuição do farol</h2><div class="panel-subtitle">Situação atual dos itens de controle</div></div><a class="link-action" href="#">Exportar análise →</a></div>
-          <div class="farol-chart">
-            <div class="bar-wrap"><span class="bar-value">2</span><span class="bar blue" style="height:47%"></span><span class="bar-label">Superado</span></div>
-            <div class="bar-wrap"><span class="bar-value">2</span><span class="bar green" style="height:47%"></span><span class="bar-label">No alvo</span></div>
-            <div class="bar-wrap"><span class="bar-value">1</span><span class="bar yellow" style="height:29%"></span><span class="bar-label">Atenção</span></div>
-            <div class="bar-wrap"><span class="bar-value">1</span><span class="bar red" style="height:29%"></span><span class="bar-label">Crítico</span></div>
-          </div>
-          <div class="legend"><span><i class="dot" style="background:var(--blue)"></i>Meta superada</span><span><i class="dot" style="background:var(--green)"></i>Dentro da meta</span><span><i class="dot" style="background:var(--yellow)"></i>Atenção</span><span><i class="dot" style="background:var(--red)"></i>Fora da meta</span></div>
-        </section>
-        <section class="panel">
-          <div class="panel-head"><div><h2>Desvios prioritários</h2><div class="panel-subtitle">Últimos apontamentos da operação</div></div><a class="link-action" href="#">Apontar +</a></div>
-          <ul class="alert-list">
-            <li class="alert-item"><i class="status-dot status-RED"></i><div class="alert-main"><div class="alert-title">Disponibilidade dos altos-fornos</div><div class="alert-meta">MAN-008 · Manutenção</div></div><div class="alert-value">88,7<small>meta 94%</small></div></li>
-            <li class="alert-item"><i class="status-dot status-YELLOW"></i><div class="alert-main"><div class="alert-title">Consumo específico de energia</div><div class="alert-meta">ENE-004 · Utilidades</div></div><div class="alert-value">478<small>meta 465 kWh/t</small></div></li>
-            <li class="alert-item"><i class="status-dot status-YELLOW"></i><div class="alert-main"><div class="alert-title">Geração específica de escória</div><div class="alert-meta">AMB-003 · Meio ambiente</div></div><div class="alert-value">301<small>meta 285 kg/t</small></div></li>
-            <li class="alert-item"><i class="status-dot status-BLUE"></i><div class="alert-main"><div class="alert-title">Produção de aço bruto</div><div class="alert-meta">PRD-001 · Aciaria</div></div><div class="alert-value">4.928<small>meta 4.850 t/dia</small></div></li>
-          </ul>
-        </section>
-      </div>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Desvios prioritários</h2><div class="panel-subtitle">Últimos apontamentos da operação</div></div><a class="link-action" href="#">Apontar +</a></div>
+        <ul class="alert-list">
+          <li class="alert-item"><i class="status-dot status-RED"></i><div class="alert-main"><div class="alert-title">Disponibilidade dos altos-fornos</div><div class="alert-meta">MAN-008 · Manutenção</div></div><div class="alert-value">88,7<small>meta 94%</small></div></li>
+          <li class="alert-item"><i class="status-dot status-YELLOW"></i><div class="alert-main"><div class="alert-title">Consumo específico de energia</div><div class="alert-meta">ENE-004 · Utilidades</div></div><div class="alert-value">478<small>meta 465 kWh/t</small></div></li>
+          <li class="alert-item"><i class="status-dot status-YELLOW"></i><div class="alert-main"><div class="alert-title">Geração específica de escória</div><div class="alert-meta">AMB-003 · Meio ambiente</div></div><div class="alert-value">301<small>meta 285 kg/t</small></div></li>
+          <li class="alert-item"><i class="status-dot status-BLUE"></i><div class="alert-main"><div class="alert-title">Produção de aço bruto</div><div class="alert-meta">PRD-001 · Aciaria</div></div><div class="alert-value">4.928<small>meta 4.850 t/dia</small></div></li>
+        </ul>
+      </section>
+      <section class="panel table-panel farol-pie-panel">
+        <div class="panel-head"><div><h2>Visão em pizza do farol</h2><div class="panel-subtitle">Participação por situação atual</div></div></div>
+        <div class="farol-pie-content">
+          <div class="farol-pie" role="img" aria-label="Distribuição do farol: 2 itens superados, 2 no alvo, 1 em atenção e 1 crítico" style="--blue-percent:33.33%;--green-percent:66.67%;--yellow-percent:83.33%"><div class="farol-pie-center"><strong>6</strong><span>itens</span></div></div>
+          <div class="pie-legend"><span><i class="dot" style="background:var(--blue)"></i>Superado <b>2</b></span><span><i class="dot" style="background:var(--green)"></i>No alvo <b>2</b></span><span><i class="dot" style="background:var(--yellow)"></i>Atenção <b>1</b></span><span><i class="dot" style="background:var(--red)"></i>Crítico <b>1</b></span></div>
+        </div>
+      </section>
       <section class="panel table-panel">
         <div class="panel-head"><div><h2>Acompanhamento recente</h2><div class="panel-subtitle">Leituras, análise e plano de ação</div></div><a class="link-action" href="#">Ver todos →</a></div>
         <div class="table-scroll"><table class="data"><thead><tr><th>Item</th><th>Área</th><th>Meta</th><th>Realizado</th><th>Farol</th><th>Responsável</th></tr></thead><tbody>
@@ -71,6 +66,7 @@
           <tr><td><span class="code">MAN-008</span><br><strong>Disponibilidade dos altos-fornos</strong></td><td>Manutenção</td><td>94%</td><td><strong>88,7%</strong></td><td><span class="badge badge-RED">Crítico</span></td><td>Luciana Reis</td></tr>
         </tbody></table></div>
       </section>
+      <footer class="demo-footer">Ambiente de demonstração</footer>
     </div>
   </main>
 </div>
