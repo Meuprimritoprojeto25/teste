@@ -16,9 +16,9 @@ import javax.persistence.Version;
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
     private Long id;
-    private Long version;
-    private Date createdAt;
-    private Date updatedAt;
+    private Long version = 0L;
+    private Date createdAt = new Date();
+    private Date updatedAt = new Date();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,8 +42,9 @@ public abstract class BaseEntity implements Serializable {
     @PrePersist
     protected void onCreate() {
         Date now = new Date();
-        createdAt = now;
-        updatedAt = now;
+        if (createdAt == null) { createdAt = now; }
+        if (updatedAt == null) { updatedAt = now; }
+        if (version == null) { version = 0L; }
     }
 
     @PreUpdate
