@@ -13,26 +13,13 @@
   <article class="metric"><div class="metric-top"><span>Itens de controle</span><span class="metric-icon">◎</span></div><div class="metric-value">${itemCount}</div><div class="metric-foot">metas ativas na hierarquia</div></article>
   <article class="metric"><div class="metric-top"><span>Equipe gerencial</span><span class="metric-icon">♙</span></div><div class="metric-value">${userCount}</div><div class="metric-foot">usuários cadastrados</div></article>
 </section>
-<div class="dashboard-grid">
-  <section class="panel">
-    <div class="panel-head"><div><h2>Distribuição do farol</h2><div class="panel-subtitle">Situação atual dos itens de controle</div></div><a class="link-action" href="<c:url value='/relatorios'/>">Exportar análise →</a></div>
-    <div class="farol-chart">
-      <c:set var="maxScale" value="${itemCount > 0 ? itemCount : 1}"/>
-      <div class="bar-wrap"><span class="bar-value">${lights['BLUE']}</span><span class="bar blue" style="height:${15 + (lights['BLUE'] * 70 / maxScale)}%"></span><span class="bar-label">Superado</span></div>
-      <div class="bar-wrap"><span class="bar-value">${lights['GREEN']}</span><span class="bar green" style="height:${15 + (lights['GREEN'] * 70 / maxScale)}%"></span><span class="bar-label">No alvo</span></div>
-      <div class="bar-wrap"><span class="bar-value">${lights['YELLOW']}</span><span class="bar yellow" style="height:${15 + (lights['YELLOW'] * 70 / maxScale)}%"></span><span class="bar-label">Atenção</span></div>
-      <div class="bar-wrap"><span class="bar-value">${lights['RED']}</span><span class="bar red" style="height:${15 + (lights['RED'] * 70 / maxScale)}%"></span><span class="bar-label">Crítico</span></div>
-    </div>
-    <div class="legend"><span><i class="dot" style="background:var(--blue)"></i>Meta superada</span><span><i class="dot" style="background:var(--green)"></i>Dentro da meta</span><span><i class="dot" style="background:var(--yellow)"></i>Faixa de atenção</span><span><i class="dot" style="background:var(--red)"></i>Fora da meta</span></div>
-  </section>
-  <section class="panel">
-    <div class="panel-head"><div><h2>Desvios prioritários</h2><div class="panel-subtitle">Últimos apontamentos da operação</div></div><a class="link-action" href="<c:url value='/acompanhamentos/novo'/>">Apontar +</a></div>
-    <ul class="alert-list">
-      <c:forEach items="${recent}" var="row" end="4"><li class="alert-item"><i class="status-dot status-${row.status}"></i><div class="alert-main"><div class="alert-title">${row.item.name}</div><div class="alert-meta">${row.item.code} · ${row.item.area}</div></div><div class="alert-value"><fmt:formatNumber value="${row.actualValue}" maxFractionDigits="2"/><small>meta <fmt:formatNumber value="${row.item.target}" maxFractionDigits="2"/></small></div></li></c:forEach>
-      <c:if test="${empty recent}"><li class="empty">Cadastre um item e faça o primeiro apontamento.</li></c:if>
-    </ul>
-  </section>
-</div>
+<section class="panel">
+  <div class="panel-head"><div><h2>Desvios prioritários</h2><div class="panel-subtitle">Últimos apontamentos da operação</div></div><a class="link-action" href="<c:url value='/acompanhamentos/novo'/>">Apontar +</a></div>
+  <ul class="alert-list">
+    <c:forEach items="${recent}" var="row" end="4"><li class="alert-item"><i class="status-dot status-${row.status}"></i><div class="alert-main"><div class="alert-title">${row.item.name}</div><div class="alert-meta">${row.item.code} · ${row.item.area}</div></div><div class="alert-value"><fmt:formatNumber value="${row.actualValue}" maxFractionDigits="2"/><small>meta <fmt:formatNumber value="${row.item.target}" maxFractionDigits="2"/></small></div></li></c:forEach>
+    <c:if test="${empty recent}"><li class="empty">Cadastre um item e faça o primeiro apontamento.</li></c:if>
+  </ul>
+</section>
 <c:set var="pieCount" value="${lights['BLUE'] + lights['GREEN'] + lights['YELLOW'] + lights['RED']}"/>
 <c:set var="pieTotal" value="${pieCount > 0 ? pieCount : 1}"/>
 <c:set var="bluePercent" value="${lights['BLUE'] * 100 / pieTotal}"/>
