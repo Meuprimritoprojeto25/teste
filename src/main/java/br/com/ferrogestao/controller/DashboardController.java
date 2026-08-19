@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DashboardController {
     @Autowired private DashboardService dashboardService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String dashboard(Model model) {
         model.addAllAttributes(dashboardService.summary());
         model.addAttribute("recent", dashboardService.recent());
