@@ -101,7 +101,7 @@ public class ReportService {
             Row header = sheet.createRow(0);
             CellStyle headerStyle = workbook.createCellStyle();
             headerStyle.setFillForegroundColor(IndexedColors.DARK_BLUE.getIndex());
-            headerStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+            headerStyle.setFillPattern(org.apache.poi.ss.usermodel.FillPatternType.SOLID_FOREGROUND);
             org.apache.poi.ss.usermodel.Font white = workbook.createFont();
             white.setColor(IndexedColors.WHITE.getIndex()); white.setBold(true);
             headerStyle.setFont(white);
