@@ -37,6 +37,13 @@ public class UserService {
             throw new BusinessException("A senha inicial deve possuir ao menos 6 caracteres.");
         }
         if (user.getRole() == null) { user.setRole("ANALISTA"); }
+        java.util.Date now = new java.util.Date();
+        if (user.getCreatedAt() == null) {
+            user.setCreatedAt(now);
+        }
+        if (user.getUpdatedAt() == null) {
+            user.setUpdatedAt(now);
+        }
         return repository.save(user);
     }
 
