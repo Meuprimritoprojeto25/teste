@@ -1,0 +1,4 @@
+/* JavaScript puro compatível com navegadores do período Java 7. */
+function confirmDelete(message){return window.confirm(message || 'Confirma a exclusão deste registro?');}
+function filterTable(inputId,tableId){var term=document.getElementById(inputId).value.toLowerCase(),rows=document.getElementById(tableId).getElementsByTagName('tbody')[0].rows,i;for(i=0;i<rows.length;i++){rows[i].style.display=rows[i].innerHTML.toLowerCase().indexOf(term)>-1?'':'none';}}
+function setToday(id){var d=new Date(),m=('0'+(d.getMonth()+1)).slice(-2),day=('0'+d.getDate()).slice(-2);document.getElementById(id).value=d.getFullYear()+'-'+m+'-'+day;}

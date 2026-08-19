@@ -1,0 +1,4 @@
+<%@ include file="../common/header.jsp" %>
+<div class="breadcrumb">GESTÃO / DESDOBRAMENTOS</div><div class="title-line"><div><h1>Desdobramentos e planos de ação</h1><p class="hint">Ações derivadas dos desvios dos itens de controle.</p></div><a class="button" href="${pageContext.request.contextPath}/desdobramentos/novo">Novo desdobramento</a></div>
+<div class="panel"><div class="panel-body"><table><thead><tr><th>Item de controle</th><th>Ação</th><th>Responsável</th><th>Prazo</th><th>Status</th></tr></thead><tbody><c:forEach items="${deployments}" var="d"><tr><td>${d.controlItem.code} - ${d.controlItem.name}</td><td>${d.action}</td><td>${d.responsible}</td><td>${d.dueDate}</td><td><span class="status ${d.status}">${d.status}</span></td></tr></c:forEach><c:if test="${empty deployments}"><tr><td class="empty" colspan="5">Não há desdobramentos em aberto.</td></tr></c:if></tbody></table></div></div>
+<%@ include file="../common/footer.jsp" %>
