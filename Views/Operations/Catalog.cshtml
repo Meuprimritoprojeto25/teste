@@ -1,0 +1,12 @@
+@model FerroGestao.Controllers.CatalogViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="page-heading"><div><p class="eyebrow">Operação integrada</p><h1>@Model.Title</h1><p>Dados persistidos pela nova aplicação ASP.NET Core.</p></div></div>
+<section class="panel table-panel">
+  <div class="panel-head"><div><h2>Registros</h2><div class="panel-subtitle">Consulte e integre novos registros pela API REST.</div></div>@if (Model.NewPath != "#") { <a class="link-action" href="@Model.NewPath">Endpoint JSON →</a> }</div>
+  <div class="table-scroll"><table class="data"><thead><tr>@foreach (var header in Model.Headers) { <th>@header</th> }</tr></thead><tbody>
+  @if (Model.Rows.Count == 0) { <tr><td colspan="@Model.Headers.Count" class="empty">Nenhum registro encontrado.</td></tr> }
+  @foreach (var row in Model.Rows) { <tr>@foreach (var cell in row) { <td>@cell</td> }</tr> }
+  </tbody></table></div>
+</section>

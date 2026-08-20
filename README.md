@@ -1,14 +1,14 @@
 # FerroGestão Industrial
 
-Monólito gerencial para indústria siderúrgica, implementado deliberadamente com a stack legada da era Java 7.
+Monólito gerencial para indústria siderúrgica migrado para **C# / ASP.NET Core 8**.
 
 ## Stack
 
-- Java 7 e Maven, empacotamento WAR;
-- Spring MVC 3.2, Spring ORM e transações;
-- Hibernate 4.2 com persistência H2 em arquivo (`~/ferrogestao.mv.db`);
-- JSP/JSTL, HTML5, CSS e JavaScript puro;
-- iText 5, Apache POI 3.17 e JFreeChart 1.0 para relatórios.
+- .NET 8, ASP.NET Core MVC e Razor;
+- Entity Framework Core 8 com SQLite;
+- migração inicial versionada em `Migrations/`;
+- API JSON em `/api/farol` e endpoints de gravação dos módulos principais;
+- CSS responsivo servido por `wwwroot`.
 
 ## Módulos funcionais
 
@@ -19,14 +19,19 @@ Monólito gerencial para indústria siderúrgica, implementado deliberadamente c
 - relatórios R3G (resultado, gaps e ganhos);
 - produção siderúrgica por planta, forno e turno;
 - motoristas, habilitações e treinamentos;
-- documentos editáveis com revisão e histórico;
-- relatórios de farol e desdobramento em PDF, Excel e Word;
-- gráficos de farol em PNG, JPG e SVG;
+- documentos controlados com revisão inicial;
+- central de consulta dos dados operacionais;
 - API JSON de consulta em `/api/farol`.
 
 ## Execução
 
-O artefato é um WAR Servlet 3.0. Após gerar `ferro-gestao.war`, publique-o em um contêiner compatível com Java 7, como Tomcat 7/8. A aplicação cria e atualiza o schema no primeiro início e inclui uma carga inicial idempotente para permitir a navegação.
+```bash
+dotnet run
+```
+
+No primeiro início, a aplicação aplica a migração SQLite em
+`App_Data/ferrogestao.db` e inclui uma carga demonstrativa idempotente. Não há
+dependência de Tomcat, Maven, H2 ou Java.
 
 Rotas principais:
 
@@ -40,7 +45,7 @@ Rotas principais:
 | `/producao` | Apontamento siderúrgico |
 | `/treinamentos` | Motoristas e capacitações |
 | `/documentos` | Editor e revisão documental |
-| `/relatorios` | PDF, Excel, Word e gráficos |
+| `/relatorios` | Central de relatórios |
 
-Para trocar o H2 por MySQL 5.x, altere o bean `dataSource` e o dialeto em
-`src/main/webapp/WEB-INF/spring/application-context.xml`; o driver legado já está declarado no Maven.
+Para mudar o provedor de dados, altere a cadeia `FerroGestao` e o registro do
+`FerroGestaoContext` em `Program.cs`.
