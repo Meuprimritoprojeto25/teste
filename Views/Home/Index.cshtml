@@ -1,0 +1,38 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Centro de controle";
+    var max = Math.Max(Model.ItemCount, 1);
+    string Height(TrafficStatus status) => $"{15 + Model.Lights[status] * 70 / max}%";
+}
+<div class="page-heading">
+  <div><p class="eyebrow">Operação integrada</p><h1>Visão geral da planta</h1><p>Indicadores críticos e rotina de gestão em um único painel.</p></div>
+  <div class="date-chip">Última consolidação<strong>Hoje</strong></div>
+</div>
+<section class="metrics">
+  <article class="metric"><div class="metric-top"><span>Produção consolidada</span><span class="metric-icon">◆</span></div><div class="metric-value">@Model.ProductionTotal.ToString("N0") t</div><div class="metric-foot"><span class="up">↑ operação consolidada</span></div></article>
+  <article class="metric"><div class="metric-top"><span>Saúde dos KPIs</span><span class="metric-icon">●</span></div><div class="metric-value">@Model.HealthyPercent%</div><div class="metric-foot">@Model.EvaluatedCount indicadores avaliados</div></article>
+  <article class="metric"><div class="metric-top"><span>Itens de controle</span><span class="metric-icon">◎</span></div><div class="metric-value">@Model.ItemCount</div><div class="metric-foot">metas ativas na hierarquia</div></article>
+  <article class="metric"><div class="metric-top"><span>Equipe gerencial</span><span class="metric-icon">♙</span></div><div class="metric-value">@Model.UserCount</div><div class="metric-foot">usuários cadastrados</div></article>
+</section>
+<div class="dashboard-grid">
+  <section class="panel">
+    <div class="panel-head"><div><h2>Distribuição do farol</h2><div class="panel-subtitle">Situação atual dos itens de controle</div></div><a class="link-action" href="/api/farol">Exportar análise →</a></div>
+    <div class="farol-chart">
+      <div class="bar-wrap"><span class="bar-value">@Model.Lights[TrafficStatus.Blue]</span><span class="bar blue" style="height:@Height(TrafficStatus.Blue)"></span><span class="bar-label">Superado</span></div>
+      <div class="bar-wrap"><span class="bar-value">@Model.Lights[TrafficStatus.Green]</span><span class="bar green" style="height:@Height(TrafficStatus.Green)"></span><span class="bar-label">No alvo</span></div>
+      <div class="bar-wrap"><span class="bar-value">@Model.Lights[TrafficStatus.Yellow]</span><span class="bar yellow" style="height:@Height(TrafficStatus.Yellow)"></span><span class="bar-label">Atenção</span></div>
+      <div class="bar-wrap"><span class="bar-value">@Model.Lights[TrafficStatus.Red]</span><span class="bar red" style="height:@Height(TrafficStatus.Red)"></span><span class="bar-label">Crítico</span></div>
+    </div>
+    <div class="legend"><span><i class="dot blue"></i>Meta superada</span><span><i class="dot green"></i>Dentro da meta</span><span><i class="dot yellow"></i>Atenção</span><span><i class="dot red"></i>Fora da meta</span></div>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><div><h2>Desvios prioritários</h2><div class="panel-subtitle">Últimos apontamentos da operação</div></div><a class="link-action" href="/acompanhamentos">Ver todos →</a></div>
+    <ul class="alert-list">@foreach (var row in Model.Recent.Take(4)) { <li class="alert-item"><i class="status-dot @row.Status"></i><div class="alert-main"><div class="alert-title">@row.Item.Name</div><div class="alert-meta">@row.Item.Code · @row.Item.Area</div></div><div class="alert-value">@row.ActualValue.ToString("N2")<small>meta @row.Item.Target.ToString("N2")</small></div></li> }</ul>
+  </section>
+</div>
+<section class="panel table-panel">
+  <div class="panel-head"><div><h2>Acompanhamento recente</h2><div class="panel-subtitle">Leituras, análise e plano de ação</div></div><a class="link-action" href="/acompanhamentos">Ver todos →</a></div>
+  <div class="table-scroll"><table class="data"><thead><tr><th>Item</th><th>Área</th><th>Referência</th><th>Meta</th><th>Realizado</th><th>Farol</th><th>Responsável</th></tr></thead><tbody>
+  @foreach (var row in Model.Recent) { <tr><td><span class="code">@row.Item.Code</span><br />@row.Item.Name</td><td>@row.Item.Area</td><td>@row.ReferenceDate.ToString("dd/MM/yyyy")</td><td>@row.Item.Target.ToString("N2") @row.Item.Unit</td><td><strong>@row.ActualValue.ToString("N2")</strong></td><td><span class="badge @row.Status">@row.Status</span></td><td>@(row.Item.Owner?.Name ?? "Não definido")</td></tr> }
+  </tbody></table></div>
+</section>

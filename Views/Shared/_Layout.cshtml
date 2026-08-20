@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="FerroGestão, gestão integrada de performance siderúrgica" />
+  <title>@ViewData["Title"] - FerroGestão Industrial</title>
+  <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brand-mark">FG</span><span><b>FerroGestão</b><small>Performance industrial</small></span></a>
+    <div class="nav-title">Visão gerencial</div>
+    <a class="nav-link" href="/">▦ Centro de controle</a>
+    <a class="nav-link" href="/acompanhamentos">● Farol &amp; acompanhamento</a>
+    <a class="nav-link" href="/itens-controle">◎ Itens de controle</a>
+    <a class="nav-link" href="/desdobramentos">⌘ Desdobramentos</a>
+    <a class="nav-link" href="/r3g">R3 Relatórios R3G</a>
+    <div class="nav-title">Operação</div>
+    <a class="nav-link" href="/producao">⚙ Produção siderúrgica</a>
+    <a class="nav-link" href="/treinamentos">▣ Treinamento motorista</a>
+    <a class="nav-link" href="/documentos">▤ Documentos</a>
+    <a class="nav-link" href="/relatorios">↧ Central de relatórios</a>
+    <div class="nav-title">Administração</div>
+    <a class="nav-link" href="/usuarios">♙ Usuários e acessos</a>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">FerroGestão &nbsp;/&nbsp; <strong>@ViewData["Title"]</strong></div><div class="avatar">MS</div></header>
+    <div class="content">@RenderBody()</div>
+  </main>
+</div>
+</body>
+</html>
