@@ -62,6 +62,45 @@
           </ul>
         </section>
       </div>
+      <section class="panel farol-trend-panel" aria-labelledby="farol-trend-title">
+        <div class="panel-head">
+          <div><h2 id="farol-trend-title">Evolução do farol</h2><div class="panel-subtitle">Quantidade de itens por situação nas últimas semanas</div></div>
+          <span class="trend-period">Últimas 6 semanas</span>
+        </div>
+        <div class="farol-trend-body">
+          <div class="farol-trend-chart">
+            <svg viewBox="0 0 720 250" role="img" aria-label="Gráfico de evolução do farol nas últimas seis semanas. Na semana atual: dois itens superados, dois no alvo, um em atenção e um crítico.">
+              <g class="trend-grid" aria-hidden="true">
+                <line x1="48" y1="24" x2="700" y2="24"></line>
+                <line x1="48" y1="74" x2="700" y2="74"></line>
+                <line x1="48" y1="124" x2="700" y2="124"></line>
+                <line x1="48" y1="174" x2="700" y2="174"></line>
+                <line x1="48" y1="224" x2="700" y2="224"></line>
+                <text x="30" y="28">4</text><text x="30" y="78">3</text><text x="30" y="128">2</text><text x="30" y="178">1</text><text x="30" y="228">0</text>
+              </g>
+              <polyline class="trend-line trend-blue" points="48,174 178,174 308,174 438,124 568,124 698,124"></polyline>
+              <polyline class="trend-line trend-green" points="48,74 178,74 308,124 438,124 568,124 698,124"></polyline>
+              <polyline class="trend-line trend-yellow" points="48,174 178,174 308,124 438,174 568,174 698,174"></polyline>
+              <polyline class="trend-line trend-red" points="48,174 178,174 308,174 438,174 568,174 698,174"></polyline>
+              <g class="trend-dots" aria-hidden="true">
+                <circle class="trend-blue" cx="48" cy="174" r="4"></circle><circle class="trend-blue" cx="178" cy="174" r="4"></circle><circle class="trend-blue" cx="308" cy="174" r="4"></circle><circle class="trend-blue" cx="438" cy="124" r="4"></circle><circle class="trend-blue" cx="568" cy="124" r="4"></circle><circle class="trend-blue" cx="698" cy="124" r="4"></circle>
+                <circle class="trend-green" cx="48" cy="74" r="4"></circle><circle class="trend-green" cx="178" cy="74" r="4"></circle><circle class="trend-green" cx="308" cy="124" r="4"></circle><circle class="trend-green" cx="438" cy="124" r="4"></circle><circle class="trend-green" cx="568" cy="124" r="4"></circle><circle class="trend-green" cx="698" cy="124" r="4"></circle>
+                <circle class="trend-yellow" cx="48" cy="174" r="4"></circle><circle class="trend-yellow" cx="178" cy="174" r="4"></circle><circle class="trend-yellow" cx="308" cy="124" r="4"></circle><circle class="trend-yellow" cx="438" cy="174" r="4"></circle><circle class="trend-yellow" cx="568" cy="174" r="4"></circle><circle class="trend-yellow" cx="698" cy="174" r="4"></circle>
+                <circle class="trend-red" cx="48" cy="174" r="4"></circle><circle class="trend-red" cx="178" cy="174" r="4"></circle><circle class="trend-red" cx="308" cy="174" r="4"></circle><circle class="trend-red" cx="438" cy="174" r="4"></circle><circle class="trend-red" cx="568" cy="174" r="4"></circle><circle class="trend-red" cx="698" cy="174" r="4"></circle>
+              </g>
+              <g class="trend-labels" aria-hidden="true">
+                <text x="48" y="244">Sem 1</text><text x="178" y="244">Sem 2</text><text x="308" y="244">Sem 3</text><text x="438" y="244">Sem 4</text><text x="568" y="244">Sem 5</text><text x="698" y="244" text-anchor="end">Atual</text>
+              </g>
+            </svg>
+          </div>
+          <div class="trend-summary" aria-label="Resumo da semana atual">
+            <div class="trend-summary-item"><i class="dot" style="background:var(--blue)"></i><span>Superado</span><strong>2</strong></div>
+            <div class="trend-summary-item"><i class="dot" style="background:var(--green)"></i><span>No alvo</span><strong>2</strong></div>
+            <div class="trend-summary-item"><i class="dot" style="background:var(--yellow)"></i><span>Atenção</span><strong>1</strong></div>
+            <div class="trend-summary-item"><i class="dot" style="background:var(--red)"></i><span>Crítico</span><strong>1</strong></div>
+          </div>
+        </div>
+      </section>
       <section class="panel table-panel">
         <div class="panel-head"><div><h2>Acompanhamento recente</h2><div class="panel-subtitle">Leituras, análise e plano de ação</div></div><a class="link-action" href="#">Ver todos →</a></div>
         <div class="table-scroll"><table class="data"><thead><tr><th>Item</th><th>Área</th><th>Meta</th><th>Realizado</th><th>Farol</th><th>Responsável</th></tr></thead><tbody>
