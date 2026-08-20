@@ -8,25 +8,39 @@
   <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
 </head>
 <body>
+@{
+  var currentPath = Context.Request.Path.Value?.TrimEnd('/') ?? "/";
+  if (string.IsNullOrEmpty(currentPath)) currentPath = "/";
+  string Active(string path) => string.Equals(currentPath, path, StringComparison.OrdinalIgnoreCase) ? " nav-link-active" : string.Empty;
+}
 <div class="shell">
   <aside class="sidebar">
-    <a class="brand" href="/"><span class="brand-mark">FG</span><span><b>FerroGestão</b><small>Performance industrial</small></span></a>
-    <div class="nav-title">Visão gerencial</div>
-    <a class="nav-link" href="/">▦ Centro de controle</a>
-    <a class="nav-link" href="/acompanhamentos">● Farol &amp; acompanhamento</a>
-    <a class="nav-link" href="/itens-controle">◎ Itens de controle</a>
-    <a class="nav-link" href="/desdobramentos">⌘ Desdobramentos</a>
-    <a class="nav-link" href="/r3g">R3 Relatórios R3G</a>
-    <div class="nav-title">Operação</div>
-    <a class="nav-link" href="/producao">⚙ Produção siderúrgica</a>
-    <a class="nav-link" href="/treinamentos">▣ Treinamento motorista</a>
-    <a class="nav-link" href="/documentos">▤ Documentos</a>
-    <a class="nav-link" href="/relatorios">↧ Central de relatórios</a>
-    <div class="nav-title">Administração</div>
-    <a class="nav-link" href="/usuarios">♙ Usuários e acessos</a>
+    <a class="brand" href="/" aria-label="FerroGestão — centro de controle">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span><b>FerroGestão</b><small>Inteligência industrial</small></span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <div class="nav-title">Visão gerencial</div>
+      <a class="nav-link@Active("/")" href="/"><span class="nav-icon">▦</span>Centro de controle</a>
+      <a class="nav-link@Active("/acompanhamentos")" href="/acompanhamentos"><span class="nav-icon">◉</span>Farol &amp; acompanhamento</a>
+      <a class="nav-link@Active("/itens-controle")" href="/itens-controle"><span class="nav-icon">◇</span>Itens de controle</a>
+      <a class="nav-link@Active("/desdobramentos")" href="/desdobramentos"><span class="nav-icon">⌘</span>Desdobramentos</a>
+      <a class="nav-link@Active("/r3g")" href="/r3g"><span class="nav-icon">R3</span>Relatórios R3G</a>
+      <div class="nav-title">Operação</div>
+      <a class="nav-link@Active("/producao")" href="/producao"><span class="nav-icon">⚙</span>Produção siderúrgica</a>
+      <a class="nav-link@Active("/treinamentos")" href="/treinamentos"><span class="nav-icon">▣</span>Treinamento motorista</a>
+      <a class="nav-link@Active("/documentos")" href="/documentos"><span class="nav-icon">▤</span>Documentos</a>
+      <a class="nav-link@Active("/relatorios")" href="/relatorios"><span class="nav-icon">↗</span>Central de relatórios</a>
+      <div class="nav-title">Administração</div>
+      <a class="nav-link@Active("/usuarios")" href="/usuarios"><span class="nav-icon">♙</span>Usuários e acessos</a>
+    </nav>
+    <div class="sidebar-footer"><span class="live-dot"></span><span>Sistema operacional</span></div>
   </aside>
   <main class="main">
-    <header class="topbar"><div class="crumb">FerroGestão &nbsp;/&nbsp; <strong>@ViewData["Title"]</strong></div><div class="avatar">MS</div></header>
+    <header class="topbar">
+      <div class="crumb"><span class="crumb-label">FerroGestão</span><span class="crumb-separator">/</span><strong>@ViewData["Title"]</strong></div>
+      <div class="topbar-actions"><span class="sync-status"><i></i>Dados sincronizados</span><div class="avatar" aria-label="Marina Soares">MS</div></div>
+    </header>
     <div class="content">@RenderBody()</div>
   </main>
 </div>
